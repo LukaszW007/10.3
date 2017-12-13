@@ -2,7 +2,7 @@ $(document).ready(function () {
     console.log('DOM loaded - you can have fun');
 
     $(function () {
-        var carouselList = $('#carousel ul');
+        var carouselList = $('#carousel .gallery');
 
         function changeSlideLeft() {
             carouselList.animate({'marginLeft': -400}, 500, moveFirstSlide);
