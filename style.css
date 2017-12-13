@@ -1,6 +1,63 @@
-.carousel img{
-    height: 400px;
+/** {*/
+/*box-sizing: border-box;*/
+/*}*/
+
+#carousel {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    height: 300px;
+    width: 400px;
+    border: 5px solid #000000;
+    overflow: hidden;
 }
-.carousel ul{
+
+#carousel > ul {
     list-style-type: none;
+    width: 2000px;
+    margin: 0;
+    padding: 0;
+}
+
+#carousel li {
+    position: relative;
+    height: 300px;
+    width: 400px;
+    float: left;
+    /*left: -20px;*/
+    z-index: 0;
+}
+
+#carousel img {
+
+    height: 300px;
+    width: 400px;
+}
+
+a {
+    display: inline-block;
+    position: relative;
+    color: red;
+    /*border: 5px solid red;*/
+    height: 300px;
+    width: 50px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,.3);
+    z-index: 1;
+}
+
+.leftArrow {
+    position: absolute;
+    float: left;
+}
+
+.rightArrow {
+    /*      z-index: 2; */
+    bottom: 300px;
+    float: right;
+}
+span{
+    position: relative;
+    left:20px;
+    top:140px;
 }
