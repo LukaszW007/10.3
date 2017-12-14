@@ -94,21 +94,16 @@ $(document).ready(function () {
         // var pictureNo;
         // var dotNo;
 
-        function jumpToPicture(){
-            // alert(dot.length);
-            // alert(picture.length);
+
             $(dot).click(function () {
                 dotNo=dot.index(this);
                 changeColorDots(dotNo);
                 //pictureNo=$(picture).eq(dotNo);
                 pictureNo = $(picture).index();
                 alert(dotNo);
-                alert(picture.index());
-                var pictureToShow= $(picture).eq(dotNo);
-                $(pictureToShow).show();
+                alert(pictureNo);
             });
 
-        };
-        jumpToPicture();
+
 
 }, true);
