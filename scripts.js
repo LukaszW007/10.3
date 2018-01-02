@@ -5,8 +5,8 @@ $(document).ready(function () {
     var picture = $('.gallery li');
     var pictureNo;
     var dotNo;
-    // alert('zdjecie'+$(picture).index());
-    // alert('kropka'+$(dot).index());
+
+
     $(function () {
         var carouselList = $('#carousel .gallery');
 
@@ -15,7 +15,8 @@ $(document).ready(function () {
         };
 
         function changeSlideRight() {
-            carouselList.animate({'marginRight': -400}, 500, moveLastSlide());
+            moveLastSlide();
+            carouselList.animate({'marginLeft': 0}, 500);
         };
 
         function moveFirstSlide() {
@@ -26,19 +27,18 @@ $(document).ready(function () {
         };
 
         function moveLastSlide() {
+            carouselList.css({marginLeft: -400});
             var firstItem = carouselList.find("li:first");
             var lastItem = carouselList.find("li:last");
             firstItem.before(lastItem);
-            carouselList.css({marginRight: 0})
         };
-        // setInterval(changeSlide, 3000);
 
+        /*When user click right arrow then left margin of .gallery list is changing about width of one picture (400px). Then last picture which is on the very left
+        * goes to the very right as first item.*/
         $('.rightArrow').click(function () {
             changeSlideLeft();
-            // alert('changeSlideLeft uzyty');
-            pictureNo=$(picture).index();
-            // alert('pictureNo: '+pictureNo);
-            switch (pictureNo){
+            pictureNo = $(picture).index();
+            switch (pictureNo) {
                 case 0:
                     changeColorDots(1);
                     break;
@@ -55,14 +55,12 @@ $(document).ready(function () {
                     changeColorDots(2);
                     break;
             }
-            // alert(pictureNo);
-            // alert('zdjecie'+$(picture).index());
-            // alert('kropka'+$(dot).index());
         });
+        /*When user click left arrow then left margin of .gallery list is changing about width of one picture (400px). Then first picture which is on the very right
+        * goes to the very left as last item with still -400px margin-left. Then whole .gallery is animated by changing margin-left to 0 - .gallery moves to the right.*/
         $('.leftArrow').click(function () {
             changeSlideRight();
             pictureNo = $(picture).index();
-            // alert('pictureNo: ' + pictureNo);
             switch (pictureNo) {
                 case 0:
                     changeColorDots(0);
@@ -80,30 +78,21 @@ $(document).ready(function () {
                     changeColorDots(1);
                     break;
             }
-            // alert(pictureNo);
-            // alert('zdjecie' + $(picture).index());
-            // alert('kropka' + $(dot).index());
         });
     });
-     function changeColorDots(dotNumber) {
-         $(dot).css('color','rgba(255,255,255,0.3)');
-         $(dot).eq(dotNumber).css('color','black');
-     };
-        // var dot = $('.dots li');
-        // var picture = $('.gallery li');
-        // var pictureNo;
-        // var dotNo;
+
+    function changeColorDots(dotNumber) {
+        $(dot).css('color', 'rgba(255,255,255,0.3)');
+        $(dot).eq(dotNumber).css('color', 'black');
+    };
+
+    $(dot).click(function () {
+        dotNo = dot.index(this);
+        changeColorDots(dotNo);
+        pictureNo = $(picture).index();
+        alert(dotNo);
+        alert(pictureNo);
+    });
 
 
-            $(dot).click(function () {
-                dotNo=dot.index(this);
-                changeColorDots(dotNo);
-                //pictureNo=$(picture).eq(dotNo);
-                pictureNo = $(picture).index();
-                alert(dotNo);
-                alert(pictureNo);
-            });
-
-
-
-}, true);
+});
