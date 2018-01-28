@@ -6,7 +6,6 @@ $(document).ready(function () {
     var pictureNo;
     var dotNo;
 
-
     $(function () {
         var carouselList = $('#carousel .gallery');
 
@@ -79,12 +78,51 @@ $(document).ready(function () {
                     break;
             }
         });
+        function multipleSlideLeft(iterations){
+            for (var i=1;i<=iterations;i++){
+                changeSlideLeft();
+            }
+        }
+        $(dot).click(function () {
+            dotNo = dot.index(this);
+            changeColorDots(dotNo);
+            pictureNo = $(picture).index();
+            alert(dotNo);
+            alert(pictureNo);
+            switch (pictureNo) {
+                case 0:
+                    var iter =Math.abs(0-dotNo);
+                    multipleSlideLeft(iter);
+                    break;
+                case 4:
+                    var iter =Math.abs(1-dotNo);
+                    multipleSlideLeft(iter);
+                    break;
+                case 3:
+                    var iter =Math.abs(2-dotNo);
+                    multipleSlideLeft(iter);
+                    break;
+                case 2:
+                    var iter =Math.abs(3-dotNo);
+                    multipleSlideLeft(iter);
+                    break;
+                case 1:
+                    var iter =Math.abs(4-dotNo);
+                    multipleSlideLeft(iter);
+                    break;
+            }
+        });
     });
 
     function changeColorDots(dotNumber) {
         $(dot).css('color', 'rgba(255,255,255,0.3)');
         $(dot).eq(dotNumber).css('color', 'black');
     };
+    /*function multipleSlideLeft(iterations){
+        for (var i=0;i<=iterations;i++){
+            changeSlideLeft();
+        }
+    }
 
     $(dot).click(function () {
         dotNo = dot.index(this);
@@ -92,7 +130,27 @@ $(document).ready(function () {
         pictureNo = $(picture).index();
         alert(dotNo);
         alert(pictureNo);
-    });
-
-
+        switch (pictureNo) {
+            case 0:
+                var iter =Math.abs(0-dotNo);
+                multipleSlideLeft(iter);
+                break;
+            case 4:
+                var iter =Math.abs(1-dotNo);
+                multipleSlideLeft(iter);
+                break;
+            case 3:
+                var iter =Math.abs(2-dotNo);
+                multipleSlideLeft(iter);
+                break;
+            case 2:
+                var iter =Math.abs(3-dotNo);
+                multipleSlideLeft(iter);
+                break;
+            case 1:
+                var iter =Math.abs(4-dotNo);
+                multipleSlideLeft(iter);
+                break;
+        }
+    });*/
 });
