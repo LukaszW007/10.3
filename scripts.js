@@ -2,6 +2,7 @@ $(document).ready(function () {
     console.log('DOM loaded - you can have fun');
 
     var dot = $('.dots li');
+    var doti = $('.dots li i');
     var picture = $('.gallery li');
     var pictureNo;
     var dotNo;
@@ -83,13 +84,25 @@ $(document).ready(function () {
                 changeSlideLeft();
             }
         }
+        function multipleSlideRight(iterations){
+            for (var i=1;i<=iterations;i++){
+                changeSlideRight();
+            }
+        }
         $(dot).click(function () {
             dotNo = dot.index(this);
+            dotNoActive = $('.dots li.active').index();
             changeColorDots(dotNo);
             pictureNo = $(picture).index();
-            alert(dotNo);
-            alert(pictureNo);
-            switch (pictureNo) {
+            alert("wybrana kropka "+dotNo);
+            alert("aktywna kropka "+dotNoActive);
+            alert("zdjecie "+pictureNo);
+            if(dotNo>dotNoActive){
+                multipleSlideLeft(dotNo-dotNoActive);
+            }else if(dotNo<dotNoActive) {
+                multipleSlideRight(dotNoActive-dotNo);
+            }
+            /*switch (dotNo>) {
                 case 0:
                     var iter =Math.abs(0-dotNo);
                     multipleSlideLeft(iter);
@@ -110,13 +123,16 @@ $(document).ready(function () {
                     var iter =Math.abs(4-dotNo);
                     multipleSlideLeft(iter);
                     break;
-            }
+            }*/
         });
     });
 
     function changeColorDots(dotNumber) {
         $(dot).css('color', 'rgba(255,255,255,0.3)');
+        $(dot).removeClass("active");
         $(dot).eq(dotNumber).css('color', 'black');
+        $(dot).eq(dotNumber).addClass("active");
+
     };
     /*function multipleSlideLeft(iterations){
         for (var i=0;i<=iterations;i++){
@@ -153,4 +169,4 @@ $(document).ready(function () {
                 break;
         }
     });*/
-});
+});/*odczytywac wartosc obecnej kropki i kliknietej kropki. jezeli index jest mniejszy to slide left jezeli wiekszy to slide right. powinno zadzialac*/
